@@ -27,7 +27,9 @@ function getSmallestNumber(numbers) {
 }
 
 function getSmallestNumberSort(numbers) {
-  numbers.sort(function(a, b){return a - b});
+  numbers.sort(function(firstNumber, secondNumber){
+    return firstNumber - secondNumber
+  });
   return numbers[0];
 }
 
@@ -88,10 +90,15 @@ function countLetters(string) {
   let countedLetters= {};
   let characters = string.replace(/\s/g, '');
   characters = characters.toLowerCase();
-  characters = characters.split('');
 
-  for (let character of characters) {
-    countedLetters[character] = (countedLetters[character] || 0) + 1;
+  for (let i = 0; i < characters.length; ++i){
+    let character = characters.charAt(i)
+    if (!countedLetters[character]) {
+      countedLetters[character] = 1;
+    }
+    else {
+      countedLetters[character] += 1;
+    }
   }
 
   return countedLetters;
@@ -103,27 +110,27 @@ console.log(lettersObject);
 
 // 7
 function getYoungestPerson(peopleArray) {
-  let youngestPerson = 100;
+  let youngestPersonAge = peopleArray[0].age;
 
-  for (let i = 0; i < peopleArray.length; i++) {
-    if (youngestPerson > peopleArray[i].age) {
-      youngestPerson = peopleArray[i].age;
+  for (let i = 0; i < peopleArray.length; ++i) {
+    if (youngestPersonAge > peopleArray[i].age) {
+      youngestPersonAge = peopleArray[i].age;
     }
   }
 
-  return youngestPerson;
+  return youngestPersonAge;
 }
 
 function getOldestPerson(peopleArray) {
-  let oldestPerson = 0;
+  let oldestPersonAge = 0;
 
-  for (let i = 0; i < peopleArray.length; i++) {
-    if (oldestPerson < peopleArray[i].age) {
-      oldestPerson = peopleArray[i].age;
+  for (let i = 0; i < peopleArray.length; ++i) {
+    if (oldestPersonAge < peopleArray[i].age) {
+      oldestPersonAge = peopleArray[i].age;
     }
   }
 
-  return oldestPerson;
+  return oldestPersonAge;
 }
 
 function getAgeDifference(peopleArray) {
@@ -149,19 +156,21 @@ const peopleArray = [
   }
 ]
 
+console.log(getYoungestPerson(peopleArray));
+console.log(getOldestPerson(peopleArray));
 console.log(getAgeDifference(peopleArray)); // 70
 
 // 8
 function positiveSum(numbers) {
-  let numbersSummary = 0;
+  let numbersSum = 0;
 
-  for (let i = 0; i < numbers.length; i++) {
+  for (let i = 0; i < numbers.length; ++i) {
     if (numbers[i] > 0) {
-      numbersSummary = numbersSummary + numbers[i];
+      numbersSum = numbersSum + numbers[i];
     }
   }
 
-  return numbersSummary;
+  return numbersSum;
 }
 
 console.log(positiveSum([1, 5, 10]));
@@ -171,7 +180,7 @@ console.log(positiveSum([-1, -5, -10]));
 function squaredNumbersSummary(numbers) {
   let total = 0;
 
-  for (let i = 0; i < numbers.length; i++) {
+  for (let i = 0; i < numbers.length; ++i) {
     total = total + numbers[i] * numbers[i];
   }
 
@@ -181,25 +190,22 @@ function squaredNumbersSummary(numbers) {
 console.log(squaredNumbersSummary([0, 3, 4, 5]));
 
 // 10
-function abbrevName(name){
-  let initials = name[0] + '.';
-
-  for (let i = 0; i < name.length; i++) {
-    if (name[i] === ' ') {
-      initials = initials + (name[i + 1]);
-    }
+function abbreviationName(name) {
+  let words = name.split(/\s+/);
+  let abbreviation = '';
+  for (let i = 0; i < words.length; ++i) {
+    abbreviation += words[i][0] + '.';
   }
-
-  return initials.toUpperCase();
+  return abbreviation.toUpperCase().substring(0, abbreviation.length - 1);
 }
 
-console.log(abbrevName('Kuba klin'));
+console.log(abbreviationName('Kuba klin'));
 
 // 11
-function countSheeps(sheep) {
+function countSheep(sheep) {
   let presenetSheep = 0;
 
-  for (let i = 0; i < sheep.length; i++) {
+  for (let i = 0; i < sheep.length; ++i) {
     if (sheep[i] === true) {
       presenetSheep = presenetSheep + 1;
     }
@@ -211,10 +217,10 @@ function countSheeps(sheep) {
 // 12
 function digitize(numbers) {
   let reverseArray = [];
-  let digits = ('' + numbers).split('').map(Number);
+  let digits = ('' + numbers).split('').reverse();
 
-  for (let i = 0; i < digits.length; i++) {
-    reverseArray.unshift(digits[i]);
+  for (let i = 0; i < digits.length; ++i) {
+    reverseArray.push(digits[i]);
   }
 
   return reverseArray;
@@ -224,7 +230,7 @@ console.log(digitize(35231));
 
 // 13
 function findNeedle(haystack) {
-  for (let i = 0; i < haystack.length; i++) {
+  for (let i = 0; i < haystack.length; ++i) {
     if (haystack[i] === 'needle') {
       return "found the needle at position" + ' ' + i;
     }
@@ -235,7 +241,7 @@ function findNeedle(haystack) {
 function doubleNumbers(numbers){
   let doubledNumbers = [...numbers];
 
-  for (let i = 0; i < doubledNumbers.length; i++) {
+  for (let i = 0; i < doubledNumbers.length; ++i) {
     doubledNumbers[i] = doubledNumbers[i] * 2;
   }
 
@@ -248,8 +254,8 @@ console.log(doubleNumbers([1, 2, 9]));
 function invertNumbers(numbers) {
   let invertedNumbers = [...numbers];
 
-  for (let i = 0; i < invertedNumbers.length; i++) {
-    invertedNumbers[i] = -invertedNumbers[i];
+  for (let i = 0; i < invertedNumbers.length; ++i) {
+    invertedNumbers[i] = invertedNumbers * -1;
   }
 
   return invertedNumbers;
@@ -259,20 +265,18 @@ function invertNumbers(numbers) {
 function summary(numbers) {
   let summaryNumbers = 0;
 
-  for (let i = 0; i < numbers.length; i++) {
-    if (typeof numbers[i] === 'number') {
-      summaryNumbers = summaryNumbers + numbers[i]
-    }
+  for (let i = 0; i < numbers.length; ++i) {
+    summaryNumbers = summaryNumbers + numbers[i];
   }
 
-  return summaryNumbers
+  return summaryNumbers;
 }
 
 // 17
 function getArraySum(numbers) {
   let summaryNumbers = 0;
 
-  for (let i = 0; i < numbers.length; i++) {
+  for (let i = 0; i < numbers.length; ++i) {
     summaryNumbers = summaryNumbers + numbers[i];
   }
 
@@ -289,7 +293,7 @@ console.log(arrayPlusArray([1, 2, 4], [1, 2, 4]));
 function countSheep(num){
   let countedSheep = '';
 
-  for (let i = 1; i < num + 1; i++) {
+  for (let i = 1; i < num + 1; ++i) {
     countedSheep += `${i} sheep... `;
   }
 
@@ -302,18 +306,18 @@ console.log(countSheep(2));
 function getAverage(marks){
   let averageMarks = 0;
 
-  for (let i = 0; i < marks.length; i++) {
+  for (let i = 0; i < marks.length; ++i) {
     averageMarks += marks[i];
   }
 
-  return Math.floor((averageMarks / marks.length));
+  return Math.floor(averageMarks / marks.length);
 }
 
 // 20
 function monkeyCount(monkeys) {
   let monkeyCounted = [];
 
-  for (let i = 1; i <= monkeys; i++) {
+  for (let i = 1; i <= monkeys; ++i) {
     monkeyCounted.push(i);
   }
 
