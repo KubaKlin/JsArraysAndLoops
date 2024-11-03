@@ -87,7 +87,7 @@ console.log(isPalindrome('Hello!')); // false
 
 //6
 function countLetters(string) {
-  let countedLetters= {};
+  let countedLetters = {};
   let characters = string.replace(/\s/g, '');
   characters = characters.toLowerCase();
 
@@ -95,8 +95,7 @@ function countLetters(string) {
     let character = characters.charAt(i)
     if (!countedLetters[character]) {
       countedLetters[character] = 1;
-    }
-    else {
+    } else {
       countedLetters[character] += 1;
     }
   }
@@ -190,20 +189,18 @@ function squaredNumbersSummary(numbers) {
 console.log(squaredNumbersSummary([0, 3, 4, 5]));
 
 // 10
-function abbreviationName(name) {
-  let words = name.split(/\s+/);
-  let abbreviation = '';
-  for (let i = 0; i < words.length; ++i) {
-    abbreviation += words[i][0] + '.';
-  }
-  return abbreviation.toUpperCase().substring(0, abbreviation.length - 1);
+function abbreviateName(name) {
+  const nameParts = name.split(' ');
+  const firstName = nameParts[0].toUpperCase();
+  const lastName = nameParts[1].toUpperCase();
+  return `${firstName[0]}.${lastName[0]}`;
 }
 
-console.log(abbreviationName('Kuba klin'));
+console.log(abbreviateName('Kuba klin'));
 
 // 11
 function countSheep(sheep) {
-  let presenetSheep = 0;
+  presenetSheep = 0;
 
   for (let i = 0; i < sheep.length; ++i) {
     if (sheep[i] === true) {
@@ -215,9 +212,10 @@ function countSheep(sheep) {
 }
 
 // 12
+console.log('----------12');
 function digitize(numbers) {
-  let reverseArray = [];
-  let digits = ('' + numbers).split('').reverse();
+  reverseArray = [];
+  digits = ('' + numbers).split('').reverse();
 
   for (let i = 0; i < digits.length; ++i) {
     reverseArray.push(digits[i]);
