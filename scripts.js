@@ -212,7 +212,6 @@ function countSheep(sheep) {
 }
 
 // 12
-console.log('----------12');
 function digitize(numbers) {
   reverseArray = [];
   digits = ('' + numbers).split('').reverse();
