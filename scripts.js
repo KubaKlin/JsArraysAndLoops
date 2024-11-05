@@ -200,27 +200,27 @@ console.log(abbreviateName('Kuba klin'));
 
 // 11
 function countSheep(sheep) {
-  presenetSheep = 0;
+  let presentSheep = 0;
 
   for (let i = 0; i < sheep.length; ++i) {
     if (sheep[i] === true) {
-      presenetSheep = presenetSheep + 1;
+      presentSheep = presentSheep + 1;
     }
   }
 
-  return presenetSheep;
+  return presentSheep;
 }
 
 // 12
 function digitize(numbers) {
-  reverseArray = [];
-  digits = ('' + numbers).split('').reverse();
+  const reverseArray = [];
+  const digits = String(numbers);
 
   for (let i = 0; i < digits.length; ++i) {
     reverseArray.push(digits[i]);
   }
 
-  return reverseArray;
+  return reverseArray.reverse();
 }
 
 console.log(digitize(35231));
