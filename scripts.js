@@ -109,31 +109,31 @@ console.log(lettersObject);
 
 // 7
 function getYoungestPerson(peopleArray) {
-  let youngestPersonAge = peopleArray[0].age;
+  let youngestPerson = peopleArray[0];
 
   for (let i = 0; i < peopleArray.length; ++i) {
-    if (youngestPersonAge > peopleArray[i].age) {
-      youngestPersonAge = peopleArray[i].age;
+    if (youngestPerson.age > peopleArray[i].age) {
+      youngestPerson = peopleArray[i];
     }
   }
 
-  return youngestPersonAge;
+  return youngestPerson;
 }
 
 function getOldestPerson(peopleArray) {
-  let oldestPersonAge = 0;
+  let oldestPerson = peopleArray[0];
 
   for (let i = 0; i < peopleArray.length; ++i) {
-    if (oldestPersonAge < peopleArray[i].age) {
-      oldestPersonAge = peopleArray[i].age;
+    if (oldestPerson.age < peopleArray[i].age) {
+      oldestPerson = peopleArray[i];
     }
   }
 
-  return oldestPersonAge;
+  return oldestPerson;
 }
 
 function getAgeDifference(peopleArray) {
-  return getOldestPerson(peopleArray) - getYoungestPerson(peopleArray);
+  return getOldestPerson(peopleArray).age - getYoungestPerson(peopleArray).age;
 }
 
 const peopleArray = [
